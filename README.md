@@ -6,7 +6,9 @@
 ![usb](https://github.com/DevHyung/github-image/blob/master/task_sub.PNG)
 
 ## 🚩 Roadmap
-TBA 
+** Rule **
+- [ ] It is based on working on each branch that names example `hj`, `sy`, `hw`.
+- [ ] Test in `release` Branch before merging
 
 ## 📦 Spec
 
