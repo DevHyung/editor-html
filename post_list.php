@@ -79,16 +79,19 @@ $query = mysqli_query($db, $sql);
                                 </thead>
                                 <tbody>
                                 <?php
+                                $cnt = 0;
                                 while ($row = mysqli_fetch_array($query)) {
+                                    $cnt += 1;
+                                    $idx = $row['idx'];
                                     echo '
                                         <tr>
-                                            <td class="serial">' . $row['idx'] . '</td>
+                                            <td class="serial">' . $cnt . '</td>
                                             <td>' . $row['title'] . '</td>
                                             <td><span class="writer">' . $row['writer'] . '</span></td>
                                             <td><span class="create-date">' . $row['createDateTime'] . ' </span></td>
-                                            <td><span class="varify">' . $row['isVerify'] . ' </span></td>
+                                            <td><span class="verify">' . $row['isVerify'] . ' </span></td>
                                             <td>
-                                                <a class="badge badge-complete" href="/edit/">상세보기</a>
+                                                <a class="badge badge-complete" href="/edit/post_view.php?idx='.$idx.'">상세보기</a>
                                             </td>
                                         </tr>';
                                 }
