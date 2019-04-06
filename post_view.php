@@ -306,12 +306,13 @@ mysqli_close($db);
                                 </div>
                                 <div class="col-auto">
                                     <div class="input-group-btn">
-                                        <?php echo '<a href="/edit/post_editor.php?idx='.$postId.'" class="btn btn-primary">수정하기</button>';?>
+                                        <?php echo '<a href="/edit/post_editor.php?idx='.$postId.'" class="btn btn-primary">수정하기</a>';?>
                                     </div>
                                 </div>
                             </div>
                             <div class="row post-body">
-                                <div class="col"><?=$content?></p>
+                                <div class="col">
+                                    <?=$content?>
                                 </div>
                             </div>
                             <div class="row post-images">
