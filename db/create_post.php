@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
 }
 $id = $_SESSION['id'];
 $title = $_POST['title'];
-$writer = $_POST['writer'];
+$writer = $_SESSION['auth'];
 $content = $_POST['content'];
 
 $table_name = "post";
