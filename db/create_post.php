@@ -7,18 +7,18 @@ if(!isset($_SESSION))
 
 $title=$_POST['title'];
 $writer=$_POST['writer'];
-$contents=$_POST['contents'];
+$content=$_POST['content'];
 
 $table_name = "post";
 $sql = "
     INSERT INTO $table_name (
         title,
         writer,
-        contents
+        content
     ) VALUES (
         '$title',
         '$writer',
-        '$contents'
+        '$content'
     )";
 if($result = mysqli_query($db, $sql))
 {
