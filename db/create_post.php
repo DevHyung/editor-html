@@ -13,11 +13,13 @@ $sql = "
     INSERT INTO $table_name (
         title,
         writer,
-        content
+        content,
+        createDateTime
     ) VALUES (
         '$title',
         '$writer',
-        '$content'
+        '$content',
+        NOW()
     )";
 if ($result = mysqli_query($db, $sql)) {
     echo "<script>alert('등록되었습니다. ');</script>";
