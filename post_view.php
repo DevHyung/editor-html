@@ -5,7 +5,7 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 $postId = $_GET["idx"];
-
+echo $postId;
 
 $table_name = "post";
 $sql = "SELECT * FROM $table_name WHERE idx='$postId'";
@@ -301,12 +301,12 @@ mysqli_close($db);
                         <div class="card-body card-block">
                             <div class="row post-header">
                                 <div class="col-auto mr-auto">
-                                    <h1 class="post-title"><?=$title?></h1>
+                                    <h3 class="post-title"><?=$title?></h3>
                                     <p class="post-author">작성자 :  <?=$writer?></p>
                                 </div>
                                 <div class="col-auto">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-primary">수정하기</button>
+                                        <?php echo '<a href="/edit/post_editor.php?idx='.$postId.'" class="btn btn-primary">수정하기</button>';?>
                                     </div>
                                 </div>
                             </div>
