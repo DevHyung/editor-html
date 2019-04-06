@@ -3,7 +3,7 @@ require_once("./dbconfig.php");
 if (!isset($_SESSION)) {
     session_start();
 }
-
+$id = $_SESSION['id'];
 $title = $_POST['title'];
 $writer = $_POST['writer'];
 $content = $_POST['content'];
@@ -11,15 +11,19 @@ $content = $_POST['content'];
 $table_name = "post";
 $sql = "
     INSERT INTO $table_name (
+        id,
         title,
         writer,
         content,
-        createDateTime
+        createDateTime,
+        isVerify
     ) VALUES (
+        '$id',
         '$title',
         '$writer',
         '$content',
-        NOW()
+        NOW(),
+        'n'
     )";
 if ($result = mysqli_query($db, $sql)) {
     echo "<script>alert('등록되었습니다. ');</script>";

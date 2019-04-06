@@ -70,13 +70,14 @@ $query = mysqli_query($db, $sql);
                         <div class="table-stats order-table ov-h">
                             <table class="table ">
                                 <thead>
-                                <tr>
-                                    <th class="serial">#</th>
-                                    <th>제목</th>
-                                    <th>작성자</th>
-                                    <th>작성일</th>
-                                    <th>button</th>
-                                </tr>
+                                    <tr>
+                                        <th class="serial">#</th>
+                                        <th>제목</th>
+                                        <th>작성자</th>
+                                        <th>작성일</th>
+                                        <th>승인여부</th>
+                                        <th></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 <?php
@@ -86,14 +87,14 @@ $query = mysqli_query($db, $sql);
                                             <td class="serial">' . $row['idx'] . '</td>
                                             <td>' . $row['title'] . '</td>
                                             <td><span class="writer">' . $row['writer'] . '</span></td>
-                                            <td><span class="create-date-time">' . $row['createDateTime'] . ' </span></td>
+                                            <td><span class="create-date">' . $row['createDateTime'] . ' </span></td>
+                                            <td><span class="varify">' . $row['isVerify'] . ' </span></td>
                                             <td>
-                                                <span class="badge badge-complete">상세보기</span>
+                                                <a class="badge badge-complete" href="/edit/">상세보기</a>
                                             </td>
                                         </tr>';
                                 }
                                 ?>
-
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->
