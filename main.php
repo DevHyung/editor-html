@@ -74,17 +74,18 @@
         #cellPaiChart {
             height: 160px;
         }
+
     </style>
 </head>
 
 <body>
 <!-- Left Panel -->
-<?php include './frame/left_panel.html'; ?>
+<?php include './frame/left_panel.php'; ?>
 <!-- /#left-panel -->
 <!-- Right Panel -->
 <div id="right-panel" class="right-panel">
     <!-- Header-->
-    <?php include './frame/header.html'; ?>
+    <?php include './frame/header.php'; ?>
     <!-- /#header -->
     <!-- Content -->
     <div class="content">
