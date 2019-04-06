@@ -22,10 +22,19 @@ if($result = mysqli_query($db, $sql))
 		$row = mysqli_fetch_assoc($result);
 		if($row["pw"] == $userPw) // 로그인 성공
 		{
+			$_SESSION['id'] = $row['id'];
 			$_SESSION['auth'] = $row['name'];
 			$tmp = $row['name'];
-			echo "<script>alert('$tmp 작가님 환영합니다.');</script>";
-			echo "<script>window.location.replace('../main.php');</script>";
+			
+			if($row['name'] == "admin"){
+				echo "<script>alert('관리자 페이지로 이동합니다.');</script>";
+				echo "<script>window.location.replace('../admin.php');</script>";
+			}
+			else{
+				echo "<script>alert('$tmp 작가님 환영합니다.');</script>";
+				echo "<script>window.location.replace('../main.php');</script>";
+			}
+			
 		}
 		else
 		{

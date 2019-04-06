@@ -68,12 +68,12 @@
 
 <body>
     <!-- Left Panel -->
-    <?php include './frame/left_panel.html'; ?>
+    <?php include './frame/left_panel.php'; ?>
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
-        <?php include './frame/header.html'; ?>
+        <?php include './frame/header.php'; ?>
         <!-- /#header -->
         <!-- Content -->
         <div class="content">
@@ -553,18 +553,7 @@
         <!-- /.content -->
         <div class="clearfix"></div>
         <!-- Footer -->
-        <footer class="site-footer">
-            <div class="footer-inner bg-white">
-                <div class="row">
-                    <div class="col-sm-6">
-                        Copyright &copy; 2018 Ela Admin
-                    </div>
-                    <div class="col-sm-6 text-right">
-                        Designed by <a href="https://colorlib.com">Colorlib</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include './frame/footer.php'; ?>
         <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
