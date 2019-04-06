@@ -18,10 +18,9 @@ $sql = "
 ";
 if ($result = mysqli_query($db, $sql)) {
     echo "<script>alert('등록되었습니다. ');</script>";
-    //echo "<script>window.history.go(-2);</script>";
+    echo "<script>window.history.go(-2);</script>";
 } else {
     echo mysqli_error($db);
 }
-mysqli_free_result($result);
 mysqli_close($db);
 ?>

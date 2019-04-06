@@ -18,9 +18,6 @@ $writer = $row["writer"];
 $content = $row["content"];
 $createDateTime = $row["createDateTime"];
 
-
-
-
 mysqli_free_result($result);
 mysqli_close($db);
 ?>
@@ -311,8 +308,8 @@ mysqli_close($db);
                                 </div>
                             </div>
                             <div class="row post-body">
-                                <div class="col">
-                                    <?=$content?>
+                                <div class="col" id="post-contents">
+                                    <?=nl2br($content)?>
                                 </div>
                             </div>
                             <div class="row post-images">
@@ -365,6 +362,7 @@ mysqli_close($db);
 <script src="assets/js/main.js"></script>
 <script>
     window.addEventListener(`load`, function () {
+        // 이미지 다른 화면에서 확대
         const postImageEls = document.querySelectorAll(`.post-image`);
         postImageEls.forEach(postImageEl => {
             postImageEl.addEventListener(`click`, (e) => {
@@ -373,7 +371,7 @@ mysqli_close($db);
                 aEl.href = e.target.src;
                 aEl.click();
             });
-        })
+        });
     });
 </script>
 

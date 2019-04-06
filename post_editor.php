@@ -1,11 +1,9 @@
 <?php
 require_once("./db/dbconfig.php");
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
+if (!isset($_SESSION)) {
+    session_start();
+}
 $postId = $_GET["idx"];
-
 
 $table_name = "post";
 $sql = "SELECT * FROM $table_name WHERE idx='$postId'";
@@ -18,7 +16,7 @@ $writer = $row["writer"];
 $content = $row["content"];
 $createDateTime = $row["createDateTime"];
 
-
+mysqli_free_result($result);
 mysqli_close($db);
 ?>
 
@@ -181,7 +179,7 @@ mysqli_close($db);
                         <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
 
                         <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span
-                                class="count">13</span></a>
+                                    class="count">13</span></a>
 
                         <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
 
@@ -203,18 +201,20 @@ mysqli_close($db);
                         </div>
                         <div class="card-body card-block">
                             <form action="./db/update_post.php" method="post" class="form-horizontal">
-                                <input type="hidden" name="idx" value="<?=$postId?>" readonly>
+                                <input type="hidden" name="idx" value="<?= $postId ?>" readonly>
                                 <div class="form-group">
                                     <label for="title" class="form-control-label">제목</label>
                                     <input type="text" id="title" placeholder="제목을 입력해주세요."
-                                           value="<?=$title?>"
+                                           value="<?= $title ?>"
                                            class="form-control" name="title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="content" class="form-control-label">내용</label>
-                                    <label for="content" id="textarea-length" class="form-control-label content-length">글자 수 : 0자</label>
-                                    <textarea id="content" rows="13"
-                                              placeholder="내용을 입력해주세요." class="form-control" name="content"><?=$content?></textarea>
+                                    <label for="postContent" class="form-control-label">내용</label>
+                                    <label for="postContent" id="textarea-length"
+                                           class="form-control-label content-length"></label>
+                                    <textarea id="postContent" rows="13"
+                                              placeholder="내용을 입력해주세요." class="form-control"
+                                              name="content"><?= $content ?></textarea>
                                 </div>
                                 <div class="row">
                                     <div class="col ml-auto">
@@ -257,14 +257,18 @@ mysqli_close($db);
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-    window.addEventListener(`load`, function() {
-       const contentEl = document.querySelector(`#textarea-input`);
-       contentEl.addEventListener(`keyup`, function(e) {
-            const targetValue = e.target.value.replace(/\s/gi, '');
-            const textareaLengthEl = document.querySelector(`#textarea-length`);
-            textareaLengthEl.innerText = `글자 수 : ${targetValue.length}자`;
-       })
+    const contentEl = document.querySelector(`#postContent`);
+    const textareaLengthEl = document.querySelector(`#textarea-length`);
+
+    updateTextLength(contentEl.value);
+    contentEl.addEventListener(`keyup`, (e) => {
+        updateTextLength(e.target.value);
     });
+
+    function updateTextLength(text) {
+        const targetValue = text.replace(/\s/gi, '');
+        textareaLengthEl.innerText = `글자 수 : ${targetValue.length}자`;
+    }
 </script>
 
 
