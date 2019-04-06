@@ -5,12 +5,22 @@
                     <li class="active">
                         <a href="main.php"><i class="menu-icon fa fa-laptop"></i>Home </a>
                     </li>
-                    <li class="menu-title">작가 관리</li>
+                    <li class="menu-title">User</li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>작가 관련</a>
                         <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="signup.html">작가 생성</a></li>
                             <li><i class="fa fa-table"></i><a href="user_list.php">작가 리스트</a></li>
-                            <li><i class="fa fa-table"></i><a href="#">작가에게 글 요청</a></li>
+                            <li><i class="fa fa-table"></i><a href="user_request.php">작가에게 글 요청</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-title">Post</li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>글 관련</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="post_list.php">전체 글 목록</a></li>
+                            <li><i class="fa fa-table"></i><a href="verify_post_list.php">승인 대기 글 리스트</a></li>
+
                         </ul>
                     </li>
                 <!--

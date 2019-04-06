@@ -26,7 +26,7 @@ $sql  = "
 if($result = mysqli_query($db, $sql))
 {
 	echo "<script>alert('등록되었습니다. ');</script>";
-	echo "<script>window.location.replace('../index.html');</script>";
+	echo "<script>window.location.replace('../main.php');</script>";
 }
 else{
 	echo mysqli_error($db);

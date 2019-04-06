@@ -2,7 +2,7 @@
 if(!isset($_SESSION)) 
         session_start(); 
 if(!isset($_SESSION['auth']))
-  echo"<script>alert('권한이 없습니다.');location.href='../index.html';</script>";
+  echo"<script>alert('권한이 없습니다.');location.href='../main.php';</script>";
 
 require_once("db/dbconfig.php"); 
 $sql = "SELECT * FROM user";
@@ -108,20 +108,29 @@ $query = mysqli_query($db,$sql);
                                     </thead>
                                     <tbody>
                                         <?php
+                                        
+                                        
+                                        //$query = mysqli_query($db,$sql);
+                                        //mysqli_num_rows($result)
                                             while ( $row=mysqli_fetch_array($query))
                                             {
+                                              $id = $row['id'];
+                                              $sql2 = "SELECT * FROM post WHERE id = '$id';";
+                                              $query2 = mysqli_query($db,$sql2);
+                                              $cnt = mysqli_num_rows($query2);
 
                                               echo'
                                               <tr>
                                               <td class="serial">'.$row['idx'].'</td>
                                               <td>'.$row['id'].'</td>
                                               <td><span class="name">'.$row['name'].'</span></td>
-                                              <td> <span class="product">0</span> </td>
+                                              <td> <span class="product">'.$cnt.'</span> </td>
                                               <td>
-                                                <span class="badge badge-complete">작성 글 보기</span>
+                                              <a class="badge badge-complete" href="post_list.php?id='.$id.'" >작성 글 보기</a>
                                               </td>
                                               </tr>
                                               ';
+
                                             }
                                         ?>
 
@@ -134,6 +143,8 @@ $query = mysqli_query($db,$sql);
             </div><!-- .animated -->
             <!-- .animated -->
         </div>
+        
+
         <!-- /.content -->
         <div class="clearfix"></div>
         <!-- Footer -->
