@@ -1,30 +1,3 @@
-<?php
-require_once("./db/dbconfig.php");
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
-$postId = $_GET["idx"];
-
-
-$table_name = "post";
-$sql = "SELECT * FROM $table_name WHERE idx='$postId'";
-$result = mysqli_query($db, $sql);
-
-$row = mysqli_fetch_array($result);
-
-$title = $row["title"];
-$writer = $row["writer"];
-$content = $row["content"];
-$createDateTime = $row["createDateTime"];
-
-
-
-
-mysqli_free_result($result);
-mysqli_close($db);
-?>
-
 <!doctype html>
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -58,27 +31,10 @@ mysqli_close($db);
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <style>
-        .post-author {
-            padding: 10px;
-        }
-
-        .post-body p {
-            color: black;
-        }
-
-        .post-date {
-            margin-top: 30px;
-            text-align: right;
-        }
-
-        .post-images { padding: 15px; }
-        .post-image {
-            padding: 2px;
-
-        }
-        .post-image img {
-            border-radius: 5px;
-            cursor: zoom-in;
+        .content-length {
+            position: absolute;
+            right: 20px;
+            color: gray;
         }
     </style>
 </head>
@@ -122,7 +78,7 @@ mysqli_close($db);
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-th"></i><a href="post_register.html">Basic Form</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="post-register.html">Basic Form</a></li>
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
                     </ul>
                 </li>
@@ -295,41 +251,36 @@ mysqli_close($db);
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header"><strong>게시글 상세정보</strong>
+                        <div class="card-header"><strong>게시글 수정</strong>
                             <!--<small>Form</small>-->
                         </div>
                         <div class="card-body card-block">
-                            <div class="row post-header">
-                                <div class="col-auto mr-auto">
-                                    <h1 class="post-title"><?=$title?></h1>
-                                    <p class="post-author">작성자 :  <?=$writer?></p>
+                            <form action="#" method="post" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="company" class="form-control-label">제목</label>
+                                    <input type="text" id="company" placeholder="제목을 입력해주세요."
+                                           value="임시 제목, 여기를 채우자"
+                                           class="form-control" name="title">
                                 </div>
-                                <div class="col-auto">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-primary">수정하기</button>
+                                <div class="form-group">
+                                    <label for="writer" class="form-control-label">작성자</label>
+                                    <input type="text" id="writer" value="홍길동"
+                                           class="form-control" name="writer">
+                                </div>
+                                <div class="form-group">
+                                    <label for="textarea-input" class="form-control-label">내용</label>
+                                    <label for="textarea-input" id="textarea-length" class="form-control-label content-length">글자 수 : 0자</label>
+                                    <textarea id="textarea-input" rows="13"
+                                              placeholder="내용을 입력해주세요." class="form-control" name="content">여기에 php로 내용을 채우자.</textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col ml-auto">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-primary">저장하기</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row post-body">
-                                <div class="col"><?=$content?></p>
-                                </div>
-                            </div>
-                            <div class="row post-images">
-                                <div class="col-4 post-image">
-                                    <img class="image-fluid" src="http://pet.chosun.com/images/news/healthchosun_pet_201802/20180205193238_1635_4749_2414.jpg" alt="포스트 이미지">
-                                </div>
-                                <div class="col-4 post-image">
-                                    <img src="http://pet.chosun.com/images/news/healthchosun_pet_201802/20180205193238_1635_4749_2414.jpg" alt="포스트 이미지">
-                                </div>
-                                <div class="col-4 post-image">
-                                    <img src="http://pet.chosun.com/images/news/healthchosun_pet_201802/20180205193238_1635_4749_2414.jpg" alt="포스트 이미지">
-                                </div>
-                            </div>
-                            <div class="row post-date">
-                                <div class="col align-self-end">
-                                    <p>작성일자 : <?=$createDateTime?></p>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -363,16 +314,13 @@ mysqli_close($db);
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-    window.addEventListener(`load`, function () {
-        const postImageEls = document.querySelectorAll(`.post-image`);
-        postImageEls.forEach(postImageEl => {
-            postImageEl.addEventListener(`click`, (e) => {
-                const aEl = document.createElement(`a`);
-                aEl.target="blank";
-                aEl.href = e.target.src;
-                aEl.click();
-            });
-        })
+    window.addEventListener(`load`, function() {
+       const contentEl = document.querySelector(`#textarea-input`);
+       contentEl.addEventListener(`keyup`, function(e) {
+            const targetValue = e.target.value.replace(/\s/gi, '');
+            const textareaLengthEl = document.querySelector(`#textarea-length`);
+            textareaLengthEl.innerText = `글자 수 : ${targetValue.length}자`;
+       })
     });
 </script>
 
