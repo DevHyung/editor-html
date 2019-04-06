@@ -1,3 +1,27 @@
+<?php
+require_once("./db/dbconfig.php");
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+$postId = $_GET["idx"];
+
+
+$table_name = "post";
+$sql = "SELECT * FROM $table_name WHERE idx='$postId'";
+$result = mysqli_query($db, $sql);
+
+$row = mysqli_fetch_array($result);
+
+$title = $row["title"];
+$writer = $row["writer"];
+$content = $row["content"];
+$createDateTime = $row["createDateTime"];
+
+
+mysqli_close($db);
+?>
+
 <!doctype html>
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -178,23 +202,19 @@
                             <!--<small>Form</small>-->
                         </div>
                         <div class="card-body card-block">
-                            <form action="#" method="post" class="form-horizontal">
+                            <form action="./db/update_post.php" method="post" class="form-horizontal">
+                                <input type="hidden" name="idx" value="<?=$postId?>" readonly>
                                 <div class="form-group">
-                                    <label for="company" class="form-control-label">제목</label>
-                                    <input type="text" id="company" placeholder="제목을 입력해주세요."
-                                           value="임시 제목, 여기를 채우자"
+                                    <label for="title" class="form-control-label">제목</label>
+                                    <input type="text" id="title" placeholder="제목을 입력해주세요."
+                                           value="<?=$title?>"
                                            class="form-control" name="title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="writer" class="form-control-label">작성자</label>
-                                    <input type="text" id="writer" value="홍길동"
-                                           class="form-control" name="writer">
-                                </div>
-                                <div class="form-group">
-                                    <label for="textarea-input" class="form-control-label">내용</label>
-                                    <label for="textarea-input" id="textarea-length" class="form-control-label content-length">글자 수 : 0자</label>
-                                    <textarea id="textarea-input" rows="13"
-                                              placeholder="내용을 입력해주세요." class="form-control" name="content">여기에 php로 내용을 채우자.</textarea>
+                                    <label for="content" class="form-control-label">내용</label>
+                                    <label for="content" id="textarea-length" class="form-control-label content-length">글자 수 : 0자</label>
+                                    <textarea id="content" rows="13"
+                                              placeholder="내용을 입력해주세요." class="form-control" name="content"><?=$content?></textarea>
                                 </div>
                                 <div class="row">
                                     <div class="col ml-auto">
