@@ -1,10 +1,18 @@
 <?php
+if(isset($_GET['id']))
+    $uid = $_GET['id'];
+else
+    $uid = '';
+    
 if (!isset($_SESSION))
     session_start();
 if (!isset($_SESSION['auth']))
     echo "<script>alert('권한이 없습니다.');location.href='../index.html';</script>";
 require_once("db/dbconfig.php");
-$sql = "SELECT * FROM post ORDER BY createDateTime desc";
+if ($uid == '')
+    $sql = "SELECT * FROM post ORDER BY createDateTime desc";
+else
+    $sql = "SELECT * FROM post WHERE id = '$uid' ORDER BY createDateTime desc";
 $query = mysqli_query($db, $sql);
 ?>
 <!doctype html>
