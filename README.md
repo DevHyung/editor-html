@@ -7,8 +7,8 @@
 
 ## 🚩 Roadmap
 ** Rule **
-- [ ] It is based on working on each branch that names example `hj`, `sy`, `hw`.
-- [ ] Test in `release` Branch before merging
+- [X] It is based on working on each branch that names example `hj`, `sy`, `hw`.
+- [X] Test in `release` Branch before merging
 
 ## 📦 Spec
 
